@@ -3,12 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> WikiNasa</title>
+  <title>WikiNasa</title>
   <link rel="stylesheet" href="style.css">
   <!-- Иконкалар үшін Font Awesome біріктірілген -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- index.html ішіндегі style.css кейін қосыңыз: -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
 
@@ -16,12 +14,12 @@
   <header>
     <nav>
       <!-- Басты бет (Иконка арқылы) -->
-      <a href="#about" id="homeLink" title="Басты бет / Сайт туралы">
+      <a href="#aboutSection" id="homeLink" title="Басты бет / Сайт туралы" aria-label="Басты бет">
         <i class="fa-solid fa-house"></i>
       </a>
 
       <!-- Таңдаулылар батырмасы -->
-      <a href="#favorites" id="favoritesLink" class="favorites-link" title="Таңдаулы мақалалар">
+      <a href="#favorites" id="favoritesLink" class="favorites-link" title="Таңдаулы мақалалар" aria-label="Таңдаулы мақалалар">
         <i class="fa-solid fa-heart"></i>
         <span>Таңдаулылар</span>
         <span class="fav-count" id="favCount">0</span>
@@ -29,8 +27,8 @@
 
       <!-- Іздеу жүйесі -->
       <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Кез келген сөзді немесе планетаны іздеу...">
-        <button type="button" id="searchBtn">
+        <input type="search" id="searchInput" placeholder="Кез келген сөзді немесе планетаны іздеу..." aria-label="Іздеу" autocomplete="off">
+        <button type="button" id="searchBtn" aria-label="Іздеу">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
       </div>
@@ -39,15 +37,14 @@
 
   <!-- Сайт туралы ақпарат (Басты бет иконкасын басқанда өтетін бөлім) -->
   <section id="aboutSection">
-    <h2>WikiNasa туралы</h2>
+    <h1>WikiNasa</h1>
     <!-- ============================================================
      1. БАСТЫ КІРІСПЕ БӨЛІМ (Hero / Intro)
      ============================================================ -->
-<div class="about-hero">
-    <!-- СУРЕТ: Ғарыш кеңістігі немесе WikiNasa баннері (images/nasa-logo-banner.jpg) -->
-     <div class="wikinasa-banner">
-        <img src="images/kzbunner.jpg" alt="WikiNasa Banner" class="wikinasa-banner">
-    </div>
+<div class="wikinasa-banner-wrapper">
+    <img src="images/kzbunner.jpg" alt="WikiNasa баннері" class="wikinasa-banner">
+</div>
+<div class="about-hero about-hero--text">
     <div class="hero-text">
         <h2>WikiNasa дегеніміз не?</h2>
         <p>WikiNasa — қолданушыларға ғарыш, планеталар және астрономия жаңалықтарын түсінікті, сапалы тілде жеткізуге арналған білім платформасы. Біздің миссиямыз — ғылыми деректерді кең аудиторияға ұғынықты әрі дәл жеткізу.</p>
@@ -61,29 +58,25 @@
      ============================================================ -->
 <div class="about-features-grid">
     <div class="feature-card">
-        <!-- СУРЕТ/ИКОНКА: Астрофизика белгісі (images/icon-sun.png) -->
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9XvGR6SsQJtD7C7msCOvHyVJxlcYjJ5-WYqXefX-aHQ&s=10" alt="Astrophysics Icon">
+        <i class="fa-solid fa-sun" aria-hidden="true"></i>
         <h3>Астрофизика</h3>
         <p>Күн, қара құрдымдар және нейтрондық жұлдыздар физикасы туралы терең ғылыми мәліметтер.</p>
     </div>
 
     <div class="feature-card">
-        <!-- СУРЕТ/ИКОНКА: Космология белгісі (images/icon-galaxy.png) -->
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk2z1lHQ9Byd0mn1PDn21j0jep_sFizoskPdisvnE5sg&s=10" alt="Cosmology Icon">
+        <i class="fa-solid fa-circle-nodes" aria-hidden="true"></i>
         <h3>Космология</h3>
         <p>Үлкен жарылыс, қараңғы материя, қараңғы энергия және Әлемнің кеңеюі туралы білім.</p>
     </div>
 
     <div class="feature-card">
-        <!-- СУРЕТ/ИКОНКА: Ғарыш технологиялары белгісі (images/icon-rocket.png) -->
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoqL4TyNAxjVpvT9Ue0-ru_fJJnxQdTeQO42V5icox0w&s=10" alt="Space Tech Icon">
+        <i class="fa-solid fa-rocket" aria-hidden="true"></i>
         <h3>Ғарыш технологиялары</h3>
         <p>Хаббл мен Джеймс Уэбб телескоптары, Марс миссиялары және ХҒС туралы жаңалықтар.</p>
     </div>
 
     <div class="feature-card">
-        <!-- СУРЕТ/ИКОНКА: Бақылау астрономиясы белгісі (images/icon-telescope.png) -->
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlBZM2aCzQflQ9KK-AVuaffJriBmtXqhyqrClP9u-sPA&s=10" alt="Observational Astronomy Icon">
+        <i class="fa-solid fa-satellite-dish" aria-hidden="true"></i>
         <h3>Бақылау астрономиясы</h3>
         <p>Телескоптар, радиоастрономия әдістері және гравитациялық линзалау құбылыстары.</p>
     </div>
@@ -113,7 +106,7 @@
             </tr>
             <tr>
                 <td>Мақалалар саны</td>
-                <td>13 тереңдетілген ғылыми мақала</td>
+                <td id="statArticleCount">38 тереңдетілген ғылыми мақала</td>
             </tr>
             <tr>
                 <td>Қамтылған тақырыптар</td>
@@ -145,28 +138,28 @@
 
         <div class="scientist-card">
             <!-- СУРЕТ: Эдвин Хаббл портреті (images/hubble.jpg) -->
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3ol1uCGXGIK4qipLrVkgqvWMvG7mTlAw3mMsXMOuyDA&s=10" alt="Edwin Hubble">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Edwin_Hubble.jpg?width=300" alt="Edwin Hubble" loading="lazy">
             <h4>Эдвин Хаббл</h4>
             <p>Әлемнің кеңейіп жатқанын дәлелдеген ұлы астроном.</p>
         </div>
 
         <div class="scientist-card">
             <!-- СУРЕТ: Альберт Эйнштейн портреті (images/einstein.jpg) -->
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-Pj8s79fJNYYf7Y8McYYCiL97xZssn7HJ8m4YmzHc3w&s=10" alt="Albert Einstein">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Albert_Einstein_Head.jpg?width=300" alt="Albert Einstein" loading="lazy">
             <h4>Альберт Эйнштейн</h4>
             <p>Жалпы салыстырмалылық теориясының авторы, қара құрдымдар мен гравитациялық линзалаудың теориялық негізін қалаған.</p>
         </div>
 
         <div class="scientist-card">
             <!-- СУРЕТ: Стивен Хокинг портреті (images/hawking.jpg) -->
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlmyJeFR1ZZUg4hThyTW3YlKrv94McdqqaBH0ien-Mdg&s=10" alt="Stephen Hawking">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Stephen_Hawking.StarChild.jpg?width=300" alt="Stephen Hawking" loading="lazy">
             <h4>Стивен Хокинг</h4>
             <p>Қара құрдымдардың кванттық булануы (Хокинг сәулеленуі) теориясының авторы.</p>
         </div>
 
         <div class="scientist-card">
             <!-- СУРЕТ: Галилео Галилей портреті (images/galileo.jpg) -->
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg99vXNs-lQKCs-j-JQPDWeUPkWnek-hxl5LWpG7BWZQ&s=10" alt="Galileo Galilei">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Galileo.arp.300pix.jpg?width=300" alt="Galileo Galilei" loading="lazy">
             <h4>Галилео Галилей</h4>
             <p>Телескопты аспанға алғаш бағыттап, Юпитер серіктерін ашқан ғалым.</p>
         </div>
@@ -179,28 +172,16 @@
      5. АҚПАРАТ КӨЗДЕРІ ЖӘНЕ СЕНІМДІЛІК ГРАФИГІ (Sources & Analytics Chart)
      ============================================================ -->
 <div class="about-analytics">
-    <h3>Ақпараттың сенімділік көздері</h3>
-    <p>Біздің платформамыздағы материалдардың 100%-ы тексерілген ғылыми деректерге негізделген. Барлық мақалалар NASA, ESA және Wikipedia ғылыми базаларының ресми мәліметтерімен салыстырылып тексеріледі.</p>
-    <!-- ГРАФИК/ДИАГРАММА: Ақпарат көздерінің үлесін көрсететін график осы жерде орналасады -->
-    <canvas id="sourcesChart" width="400" height="200"></canvas>
+    <h3>Мақалалар санаттар бойынша</h3>
+    <p>Төмендегі диаграмма платформадағы мақалалардың тақырыптық бағыттар бойынша қалай бөлінгенін көрсетеді. Материалдар NASA, ESA және Wikipedia ғылыми материалдарына сүйеніп дайындалған.</p>
+    <canvas id="sourcesChart" width="720" height="330" role="img" aria-label="Мақалалар саны санаттар бойынша"></canvas>
 </div>
   </section>
 
   <!-- Ақпараттар шығатын негізгі орталық контейнер -->
   <main id="contentArea">
-    <!-- JSON (data) арқылы жүктелетін карточкалар контейнері -->
-    <div class="cards-container" id="cardsWrapper">
-      
-      <!-- Карточка үлгісі (JavaScript арқылы осы див/спан құрылымы динамикалы түрде толығады) -->
-      <div class="card">
-        <span class="card-category">Ғарыш физикасы</span>
-        <h3 class="card-title">Планета атауы / Тақырып</h3>
-        <p class="card-description">JSON файлынан келетін сипаттама мәтіні осы жерге шығады...</p>
-        <canvas id="webgl-canvas"></canvas>
-        <span class="card-tag">#ғарыш</span>
-      </div>
-
-    </div>
+    <!-- Карточкалар script.js арқылы data.json-нан жүктеледі -->
+    <div class="cards-container" id="cardsWrapper"></div>
   </main>
 
   <!-- Футер (Байланыс және әлеуметтік желі сілтемелері) -->
@@ -211,15 +192,15 @@
       </div>
       
       <div class="footer-socials">
-        <a href="https://youtube.com" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-        <a href="https://wa.me/" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="https://t.me/" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
-        <a href="https://tiktok.com" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://t.me/" target="_blank" rel="noopener noreferrer" title="Telegram" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
       </div>
     </div>
     
     <div class="footer-bottom">
-      <p>&copy; 2026 Wiki Барлық құқықтар қорғалған.</p>
+      <p>&copy; 2026 WikiNasa. Барлық құқықтар қорғалған.</p>
     </div>
   </footer>
 <script src="script.js" defer></script>

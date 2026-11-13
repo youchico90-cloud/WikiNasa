@@ -1,10 +1,7 @@
 /* ==================================================================
-   AKASU Wiki — Негізгі JavaScript (script.js) — ТАЗАРТЫЛҒАН НҰСҚА
+   WikiNasa — Негізгі JavaScript (script.js) — ТҮЗЕТІЛГЕН НҰСҚА
    
-   ЕСКЕРТУ: Бұл скрипт дұрыс жұмыс істеуі үшін style.css файлына
-   мына ережені МІНДЕТТІ түрде қосыңыз:
-       #aboutSection.is-hidden { display: none; }
-   Әйтпесе басты беттегі «Біз туралы» бөлімі іздеу кезінде жасырылмайды.
+   (#aboutSection.is-hidden ережесі style.css файлына қосылған.)
 
    Мазмұны:
      • JSON жүктеу + қате өңдеу
@@ -31,6 +28,7 @@ const CONFIG = Object.freeze({
   },
   debounceMs: 280,
   historyLimit: 5,
+  siteName: 'WikiNasa',
   storage: {
     favorites: 'akasu.favorites',
     history: 'akasu.history'
@@ -52,6 +50,14 @@ const State = {
 };
 
 /* ============ 3. УТИЛИТАЛАР ============ */
+const CATEGORIES = Object.freeze({
+  astrophysics: 'Астрофизика',
+  cosmology: 'Космология',
+  'space-tech': 'Ғарыш технологиялары',
+  observational: 'Бақылау астрономиясы',
+  physics: 'Физика'
+});
+
 const MONTHS = ['қаңтар', 'ақпан', 'наурыз', 'сәуір', 'мамыр', 'маусым',
                 'шілде', 'тамыз', 'қыркүйек', 'қазан', 'қараша', 'желтоқсан'];
 
@@ -176,9 +182,13 @@ const DataService = {
         description: a.description || '',
         tags: Utils.parseTags(a.tags),
         aliases: Utils.parseTags(a.aliases),
+        category: a.category || '',
+        categoryLabel: CATEGORIES[a.category] || '',
         date: a.date || '',
         image: a.image || '',
-        gallery: Array.isArray(a.gallery) ? a.gallery.filter(Boolean) : [],
+        gallery: Array.isArray(a.gallery)
+          ? [...new Set(a.gallery.filter(Boolean))].filter(src => src !== a.image)
+          : [],
         table: DataService.normalizeTable(a.table)
       };
     });
@@ -192,11 +202,13 @@ const SearchEngine = {
     const tags = Utils.normalize(a.tags.join(' '));
     const desc = Utils.normalize(a.description);
     const aliases = Utils.normalize(a.aliases.join(' '));
+    const cat = Utils.normalize(a.categoryLabel);
     let s = 0;
     for (const t of toks) {
       if (title.includes(t)) s += 3;
       if (aliases.includes(t)) s += 2;
       if (tags.includes(t)) s += 2;
+      if (cat.includes(t)) s += 1;
       if (desc.includes(t)) s += 1;
     }
     return s;
@@ -207,7 +219,7 @@ const SearchEngine = {
     let out = articles.filter(a => {
       if (favoritesOnly && !State.favorites.has(a.id)) return false;
       if (!toks.length) return true;
-      const hay = Utils.normalize([a.title, a.description, ...a.tags, ...a.aliases].join(' '));
+      const hay = Utils.normalize([a.title, a.description, a.categoryLabel, ...a.tags, ...a.aliases].join(' '));
       return toks.every(t => hay.includes(t));
     });
 
@@ -418,6 +430,7 @@ const Renderer = {
 
       <div class="card-body ${cover ? 'has-cover' : ''}">
         <div class="card-text">
+          ${a.categoryLabel ? `<span class="card-category">${esc(a.categoryLabel)}</span>` : ''}
           <h3 class="card-title">${single
             ? Utils.highlight(a.title, State.query)
             : `<a href="${Renderer.articleHref(a)}" title="Мақаланы жеке ашу">${Utils.highlight(a.title, State.query)}</a>`}</h3>
@@ -457,6 +470,7 @@ const Renderer = {
         const input = document.querySelector(CONFIG.selectors.searchInput);
         if (input) input.value = term;
         App.setQuery(term);
+        App.hideSuggestions();
       });
     });
 
@@ -517,6 +531,7 @@ const App = {
       State.articles = await DataService.load();
       State.isLoading = false;
       App.initSortControl();
+      Stats.render();
       App.refresh();
     } catch (err) {
       console.error(err);
@@ -548,11 +563,11 @@ const App = {
     /* Тақырыпты бір рет, дұрыс басымдықпен орнатамыз */
     if (State.articleId) {
       const a = State.articles.find(x => String(x.id) === String(State.articleId));
-      document.title = a ? `${a.title} — AKASU Wiki` : 'AKASU Wiki';
+      document.title = a ? `${a.title} — ${CONFIG.siteName}` : CONFIG.siteName;
     } else if (State.favoritesOnly) {
-      document.title = 'Таңдаулылар — AKASU Wiki';
+      document.title = `Таңдаулылар — ${CONFIG.siteName}`;
     } else {
-      document.title = 'AKASU Wiki';
+      document.title = CONFIG.siteName;
     }
 
     if (State.articleId) {
@@ -775,6 +790,64 @@ const App = {
   }
 };
 
+/* ============ 9.1 СТАТИСТИКА ЖӘНЕ ДИАГРАММА ============ */
+const Stats = {
+  render() {
+    const n = State.articles.length;
+    const cell = document.getElementById('statArticleCount');
+    if (cell) cell.textContent = `${n} тереңдетілген ғылыми мақала`;
+    Stats.drawChart();
+  },
+
+  /* Мақалалар санын санаттар бойынша көрсететін көлденең бағанды диаграмма
+     (сыртқы кітапханасыз, таза Canvas). Деректер data.json-нан алынады. */
+  drawChart() {
+    const canvas = document.getElementById('sourcesChart');
+    if (!canvas || !canvas.getContext) return;
+
+    const counts = new Map();
+    State.articles.forEach(a => {
+      if (!a.categoryLabel) return;
+      counts.set(a.categoryLabel, (counts.get(a.categoryLabel) || 0) + 1);
+    });
+    const rows = [...counts.entries()].sort((x, y) => y[1] - x[1]);
+    if (!rows.length) return;
+
+    const W = 720, H = 70 + rows.length * 52;
+    const dpr = Math.max(1, window.devicePixelRatio || 1);
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    const ctx = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+    ctx.clearRect(0, 0, W, H);
+
+    const colors = ['#ffb347', '#5ac8fa', '#ff7eb6', '#a594ff', '#6ee7b7'];
+    const max = Math.max(...rows.map(r => r[1]));
+    const labelW = 190, left = 20, barX = left + labelW, barMaxW = W - barX - 60;
+
+    ctx.fillStyle = '#f4f6ff';
+    ctx.font = '700 17px Montserrat, "Segoe UI", sans-serif';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('Мақалалар саны санаттар бойынша', left, 26);
+
+    rows.forEach(([label, n], i) => {
+      const y = 70 + i * 52;
+      const w = Math.max(6, (n / max) * barMaxW);
+      ctx.fillStyle = '#cdd5f4';
+      ctx.font = '600 14px Nunito, "Segoe UI", sans-serif';
+      ctx.fillText(label, left, y + 14);
+      ctx.fillStyle = 'rgba(160, 182, 255, 0.12)';
+      ctx.fillRect(barX, y, barMaxW, 28);
+      ctx.fillStyle = colors[i % colors.length];
+      ctx.fillRect(barX, y, w, 28);
+      ctx.fillStyle = '#f4f6ff';
+      ctx.font = '700 14px Nunito, "Segoe UI", sans-serif';
+      ctx.fillText(String(n), barX + w + 10, y + 14);
+    });
+  }
+};
+
 /* ============ 10. ТАҢДАУЛЫЛАР БӨЛІМІ ============ */
 const FavoritesView = {
   get active() { return State.favoritesOnly; },
@@ -862,7 +935,8 @@ const Bindings = {
     if (!favLink) return;
     favLink.addEventListener('click', e => {
       e.preventDefault();
-      App.setFavorites(true);
+      /* Қайта басқанда таңдаулылар көрінісінен шығады */
+      App.setFavorites(!(State.favoritesOnly && !State.articleId));
     });
   },
 
@@ -926,4 +1000,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* Сыртқы API */
-window.AKASU = { App, State, SearchEngine, Renderer, Utils, Toast, FavoritesView };
+window.WikiNasa = { App, State, SearchEngine, Renderer, Utils, Toast, FavoritesView, Stats };

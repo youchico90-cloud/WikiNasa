@@ -10,11 +10,11 @@
         "#жұлдыз",
         "#физика"
       ],
-      "image": "images/sun.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/The_Sun_by_the_Atmospheric_Imaging_Assembly_of_NASA's_Solar_Dynamics_Observatory_-_20100819.jpg?width=1000",
       "gallery": [
-        "images/sun.jpg",
-        "images/sun-2.jpg",
-        "images/sun-3.jpg"
+        "https://commons.wikimedia.org/wiki/Special:FilePath/The_Sun_by_the_Atmospheric_Imaging_Assembly_of_NASA's_Solar_Dynamics_Observatory_-_20100819.jpg?width=1000",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Sun920607.jpg?width=1000",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Magnificent_CME_Erupts_on_the_Sun_-_August_31.jpg?width=1000"
       ],
       "table": {
         "columns": [
@@ -139,7 +139,8 @@
             "Хокинг сәулеленуі (кванттық булану теориясы)"
           ]
         ]
-      }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Black_hole_-_Messier_87_crop_max_res.jpg?width=1000"
     },
     {
       "id": 3,
@@ -199,7 +200,8 @@
             "Пульсарларды ашу, алтын/платина сияқты ауыр элементтердің нейтрондық жұлдыздардың соқтығысуынан пайда болатынын дәлелдеу"
           ]
         ]
-      }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Neutron_star_cross_section.svg?width=1000"
     },
     {
       "id": 4,
@@ -251,7 +253,8 @@
             "Экзопланеталарды табу, ерте Ғаламды зерттеу, қара құрдымдар мен галактикалардың эволюциясы"
           ]
         ]
-      }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/HST-SM4.jpeg?width=1000"
     },
     {
       "id": 5,
@@ -299,7 +302,8 @@
             "Пульсарлар, ғарыштық микротолқынды фон (реликті сәуле)"
           ]
         ]
-      }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/USA.NM.VeryLargeArray.02.jpg?width=1000"
     },
     {
       "id": 6,
@@ -347,7 +351,8 @@
             "Экзопланеталарды анықтау, Әлемнің кеңею жылдамдығын (Хаббл тұрақтысын) нақтылау"
           ]
         ]
-      }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Gravitational_lens-full.jpg?width=1000"
     },
     {
       "id": 7,
@@ -399,7 +404,8 @@
             "Әлемнің бастапқы кезеңін зерттеу, экзопланеталар атмосферасын талдау, галактикалар эволюциясы"
           ]
         ]
-      }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/JWST_spacecraft_model_3.png?width=1000"
     },
     {
       "id": 8,
@@ -443,7 +449,8 @@
             "Күн жүйесінің эволюциясын түсіну, Жердің климатын салыстыру, болашақта колония құру мүмкіндігі"
           ]
         ]
-      }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/PIA16239_High-Resolution_Self-Portrait_by_Curiosity_Rover_Arm_Camera.jpg?width=1000"
     },
     {
       "id": 9,
@@ -479,7 +486,8 @@
             "≈ 400 км"
           ]
         ]
-      }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/International_Space_Station_after_undocking_of_STS-132.jpg?width=1000"
     },
     {
       "id": 10,
@@ -515,7 +523,8 @@
             "Галактикалардың алыстауы"
           ]
         ]
-      }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/History_of_the_Universe.svg?width=1000"
     },
     {
       "id": 11,
@@ -563,7 +572,8 @@
             "Заманауи космологияның ең басты жұмбақтарының бірі"
           ]
         ]
-      }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/1E_0657-56.jpg?width=1000"
     },
     {
       "id": 12,
@@ -611,7 +621,8 @@
             "Галактикалар одан әрі алшақтап, Әлем суып, сирей береді"
           ]
         ]
-      }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Hubble_ultra_deep_field.jpg?width=1000"
     },
     {
       "id": 13,
@@ -624,11 +635,11 @@
         "#ғалым",
         "#салыстырмалылықтеориясы"
       ],
-      "image": "images/einstein.jpg",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Albert_Einstein_Head.jpg?width=1000",
       "gallery": [
-        "images/einstein.jpg",
-        "images/einstein-2.jpg",
-        "images/einstein-3.jpg"
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Albert_Einstein_Head.jpg?width=1000",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Einstein_1921_by_F_Schmutzer_-_restoration.jpg?width=1000",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Einstein_patentoffice.jpg?width=1000"
       ],
       "table": {
         "columns": [

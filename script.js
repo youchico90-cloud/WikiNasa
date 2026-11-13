@@ -400,7 +400,7 @@ const Renderer = {
 
     const cover = a.image
       ? `<div class="card-cover">
-           <img src="${esc(a.image)}" alt="${esc(a.title)}" loading="lazy">
+           <img src="${esc(a.image)}" alt="${esc(a.title)}" loading="lazy" onerror="this.closest('.card-cover').remove()">
          </div>`
       : '';
 

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> WikiNasa</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Иконкалар үшін Font Awesome біріктірілген -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- index.html ішіндегі style.css кейін қосыңыз: -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+  <!-- Навигация және мәзір сілтемелері -->
+  <header>
+    <nav>
+      <!-- Басты бет (Иконка арқылы) -->
+      <a href="#about" id="homeLink" title="Басты бет / Сайт туралы">
+        <i class="fa-solid fa-house"></i>
+      </a>
+
+      <!-- Таңдаулылар батырмасы -->
+      <a href="#favorites" id="favoritesLink" class="favorites-link" title="Таңдаулы мақалалар">
+        <i class="fa-solid fa-heart"></i>
+        <span>Таңдаулылар</span>
+        <span class="fav-count" id="favCount">0</span>
+      </a>
+
+      <!-- Іздеу жүйесі -->
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Кез келген сөзді немесе планетаны іздеу...">
+        <button type="button" id="searchBtn">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Сайт туралы ақпарат (Басты бет иконкасын басқанда өтетін бөлім) -->
+  <section id="aboutSection">
+    <h2>WikiNasa туралы</h2>
+    <!-- ============================================================
+     1. БАСТЫ КІРІСПЕ БӨЛІМ (Hero / Intro)
+     ============================================================ -->
+<div class="about-hero">
+    <!-- СУРЕТ: Ғарыш кеңістігі немесе WikiNasa баннері (images/nasa-logo-banner.jpg) -->
+     <div class="wikinasa-banner">
+        <img src="images/kzbunner.jpg" alt="WikiNasa Banner" class="wikinasa-banner">
+    </div>
+    <div class="hero-text">
+        <h2>WikiNasa дегеніміз не?</h2>
+        <p>WikiNasa — қолданушыларға ғарыш, планеталар және астрономия жаңалықтарын түсінікті, сапалы тілде жеткізуге арналған білім платформасы. Біздің миссиямыз — ғылыми деректерді кең аудиторияға ұғынықты әрі дәл жеткізу.</p>
+        <p>Бұл сайт мектеп оқушыларына, студенттерге, мұғалімдерге және барлық ғарыш әуесқойларына арналған. Барлық материалдар тексерілген ғылыми көздерге негізделген.</p>
+    </div>
+</div>
+
+
+<!-- ============================================================
+     2. САЙТТЫҢ НЕГІЗГІ БАҒЫТТАРЫ (Core Features / Grid Cards)
+     ============================================================ -->
+<div class="about-features-grid">
+    <div class="feature-card">
+        <!-- СУРЕТ/ИКОНКА: Астрофизика белгісі (images/icon-sun.png) -->
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9XvGR6SsQJtD7C7msCOvHyVJxlcYjJ5-WYqXefX-aHQ&s=10" alt="Astrophysics Icon">
+        <h3>Астрофизика</h3>
+        <p>Күн, қара құрдымдар және нейтрондық жұлдыздар физикасы туралы терең ғылыми мәліметтер.</p>
+    </div>
+
+    <div class="feature-card">
+        <!-- СУРЕТ/ИКОНКА: Космология белгісі (images/icon-galaxy.png) -->
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk2z1lHQ9Byd0mn1PDn21j0jep_sFizoskPdisvnE5sg&s=10" alt="Cosmology Icon">
+        <h3>Космология</h3>
+        <p>Үлкен жарылыс, қараңғы материя, қараңғы энергия және Әлемнің кеңеюі туралы білім.</p>
+    </div>
+
+    <div class="feature-card">
+        <!-- СУРЕТ/ИКОНКА: Ғарыш технологиялары белгісі (images/icon-rocket.png) -->
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoqL4TyNAxjVpvT9Ue0-ru_fJJnxQdTeQO42V5icox0w&s=10" alt="Space Tech Icon">
+        <h3>Ғарыш технологиялары</h3>
+        <p>Хаббл мен Джеймс Уэбб телескоптары, Марс миссиялары және ХҒС туралы жаңалықтар.</p>
+    </div>
+
+    <div class="feature-card">
+        <!-- СУРЕТ/ИКОНКА: Бақылау астрономиясы белгісі (images/icon-telescope.png) -->
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlBZM2aCzQflQ9KK-AVuaffJriBmtXqhyqrClP9u-sPA&s=10" alt="Observational Astronomy Icon">
+        <h3>Бақылау астрономиясы</h3>
+        <p>Телескоптар, радиоастрономия әдістері және гравитациялық линзалау құбылыстары.</p>
+    </div>
+</div>
+
+
+<!-- ============================================================
+     3. ДЕРЕКТЕР МЕН ПЛАТФОРМА СТАТИСТИКАСЫ (Statistics Table)
+     ============================================================ -->
+<div class="about-table-container">
+    <h3>Платформа көрсеткіштері</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Көрсеткіш атауы</th>
+                <th>Мәні / Сипаттамасы</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Негізгі ақпарат көздері</td>
+                <td>NASA ресми сайттары және Wikipedia ғылыми базасы</td>
+            </tr>
+            <tr>
+                <td>Мақалалар санаты</td>
+                <td>Астрофизика, Космология, Ғарыш технологиялары, Бақылау астрономиясы, Физика</td>
+            </tr>
+            <tr>
+                <td>Мақалалар саны</td>
+                <td>13 тереңдетілген ғылыми мақала</td>
+            </tr>
+            <tr>
+                <td>Қамтылған тақырыптар</td>
+                <td>Күн жүйесі, қара құрдымдар, нейтрондық жұлдыздар, телескоптар, Марс миссиялары, космология</td>
+            </tr>
+            <tr>
+                <td>Ақпарат тілі</td>
+                <td>Қазақ тілінде, ғылыми тұрғыдан дәл әрі түсінікті</td>
+            </tr>
+            <tr>
+                <td>Мақсатты аудитория</td>
+                <td>Оқушылар, студенттер, мұғалімдер және ғарыш әуесқойлары</td>
+            </tr>
+            <tr>
+                <td>Деректердің сенімділігі</td>
+                <td>100% тексерілген ғылыми көздерге негізделген</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- ============================================================
+     4. ҒАРЫШ ҒЫЛЫМЫНЫҢ ҰЛЫ ТҰЛҒАЛАРЫ (Scientists Gallery)
+     ============================================================ -->
+<div class="about-scientists">
+    <h3>Шабыттандырушы тұлғалар</h3>
+    <div class="scientists-grid">
+
+        <div class="scientist-card">
+            <!-- СУРЕТ: Эдвин Хаббл портреті (images/hubble.jpg) -->
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3ol1uCGXGIK4qipLrVkgqvWMvG7mTlAw3mMsXMOuyDA&s=10" alt="Edwin Hubble">
+            <h4>Эдвин Хаббл</h4>
+            <p>Әлемнің кеңейіп жатқанын дәлелдеген ұлы астроном.</p>
+        </div>
+
+        <div class="scientist-card">
+            <!-- СУРЕТ: Альберт Эйнштейн портреті (images/einstein.jpg) -->
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-Pj8s79fJNYYf7Y8McYYCiL97xZssn7HJ8m4YmzHc3w&s=10" alt="Albert Einstein">
+            <h4>Альберт Эйнштейн</h4>
+            <p>Жалпы салыстырмалылық теориясының авторы, қара құрдымдар мен гравитациялық линзалаудың теориялық негізін қалаған.</p>
+        </div>
+
+        <div class="scientist-card">
+            <!-- СУРЕТ: Стивен Хокинг портреті (images/hawking.jpg) -->
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlmyJeFR1ZZUg4hThyTW3YlKrv94McdqqaBH0ien-Mdg&s=10" alt="Stephen Hawking">
+            <h4>Стивен Хокинг</h4>
+            <p>Қара құрдымдардың кванттық булануы (Хокинг сәулеленуі) теориясының авторы.</p>
+        </div>
+
+        <div class="scientist-card">
+            <!-- СУРЕТ: Галилео Галилей портреті (images/galileo.jpg) -->
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg99vXNs-lQKCs-j-JQPDWeUPkWnek-hxl5LWpG7BWZQ&s=10" alt="Galileo Galilei">
+            <h4>Галилео Галилей</h4>
+            <p>Телескопты аспанға алғаш бағыттап, Юпитер серіктерін ашқан ғалым.</p>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ============================================================
+     5. АҚПАРАТ КӨЗДЕРІ ЖӘНЕ СЕНІМДІЛІК ГРАФИГІ (Sources & Analytics Chart)
+     ============================================================ -->
+<div class="about-analytics">
+    <h3>Ақпараттың сенімділік көздері</h3>
+    <p>Біздің платформамыздағы материалдардың 100%-ы тексерілген ғылыми деректерге негізделген. Барлық мақалалар NASA, ESA және Wikipedia ғылыми базаларының ресми мәліметтерімен салыстырылып тексеріледі.</p>
+    <!-- ГРАФИК/ДИАГРАММА: Ақпарат көздерінің үлесін көрсететін график осы жерде орналасады -->
+    <canvas id="sourcesChart" width="400" height="200"></canvas>
+</div>
+  </section>
+
+  <!-- Ақпараттар шығатын негізгі орталық контейнер -->
+  <main id="contentArea">
+    <!-- JSON (data) арқылы жүктелетін карточкалар контейнері -->
+    <div class="cards-container" id="cardsWrapper">
+      
+      <!-- Карточка үлгісі (JavaScript арқылы осы див/спан құрылымы динамикалы түрде толығады) -->
+      <div class="card">
+        <span class="card-category">Ғарыш физикасы</span>
+        <h3 class="card-title">Планета атауы / Тақырып</h3>
+        <p class="card-description">JSON файлынан келетін сипаттама мәтіні осы жерге шығады...</p>
+        <canvas id="webgl-canvas"></canvas>
+        <span class="card-tag">#ғарыш</span>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Футер (Байланыс және әлеуметтік желі сілтемелері) -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-contacts">
+        <p><strong>Байланыс:</strong> <a href="mailto:akasu.wiki@gmail.com">akasu.wiki@gmail.com</a></p>
+      </div>
+      
+      <div class="footer-socials">
+        <a href="https://youtube.com" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://wa.me/" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://t.me/" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+        <a href="https://tiktok.com" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 Wiki Барлық құқықтар қорғалған.</p>
+    </div>
+  </footer>
+<script src="script.js" defer></script>
+</body>
+</html>
